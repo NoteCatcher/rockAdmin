@@ -7,49 +7,49 @@
  * Manages authentication to any active providers.
  */
 angular.module('rockadminApp')
-  .controller('LoginCtrl', ["$scope", "auth", "$location", function ($scope, auth, $location) {
+  .controller('LoginCtrl', ['$scope', 'auth', '$location', function ($scope, auth, $location) {
 
     $scope.loginBtn = true;
     $scope.logoutBtn = true;
 
     auth.$onAuthStateChanged(function (authData) {
       if (authData) {
-        console.log(" logged: " + authData.uid);
+        console.log(' logged: ' + authData.uid);
         $scope.logoutBtn = true;
         $scope.loginBtn = false;
         $location.path('/account');
       }
     });
 
-    
+
 
       // SignIn with a Provider
       $scope.oauthLogin = function (provider) {
         auth.$signInWithPopup(provider)
           .then(function (authData) {
-            console.log("logged");
+            console.log('logged');
             redirect();
           })
           .catch(function (error) {
-            console.log("login error");
+            console.log('login error');
             showError(error);
-          })
+          });
       };
 
       // Anonymous login method
       $scope.anonymousLogin = function () {
         auth.$signInAnonymously()
           .then(function (authData) {
-            console.log("logged ", authData.uid);
+            console.log('logged ', authData.uid);
           })
           .catch(function (error) {
-            console.log("login error ", error);
-          })
+            console.log('login error ', error);
+          });
       };
 
-    
 
-    
+
+
 
       // Autenthication with password and email
       $scope.passwordLogin = function (email, pass) {
@@ -57,11 +57,11 @@ angular.module('rockadminApp')
         auth.$signInWithEmailAndPassword(email, pass)
           .then(function (authData) {
             redirect();
-            console.log("logged");
+            console.log('logged');
           })
           .catch(function (error) {
             showError(error);
-            console.log("error: " + error);
+            console.log('error: ' + error);
           });
       };
 
@@ -75,16 +75,16 @@ angular.module('rockadminApp')
         } else {
           auth.$createUserWithEmailAndPassword(email, pass)
             .then(function (userData) {
-              console.log("User " + userData.uid + " created successfully");
+              console.log('User ' + userData.uid + ' created successfully');
               return userData;
             })
             .then(function (authData) {
-            console.log("Logged user: ", authData.uid);
+            console.log('Logged user: ', authData.uid);
               createProfile();
               redirect();
             })
             .catch(function (error) {
-              console.error("Error: ", error);
+              console.error('Error: ', error);
             });
           }
         };
@@ -119,7 +119,7 @@ angular.module('rockadminApp')
         return f + str.substr(1);
       }
 
-    
+
 
     function redirect() {
       $location.path('/account');

@@ -7,11 +7,11 @@
  * Provides rudimentary account management functions.
  */
 angular.module('rockadminApp')
-  .controller('AccountCtrl', ["$scope", "auth", "currentAuth", function (
+  .controller('AccountCtrl', ['$scope', 'auth', 'currentAuth', function (
     $scope,
     auth,
-    currentAuth
-  , $timeout 
+    currentAuth,
+    $timeout
   ) {
 
   $scope.user = {
@@ -21,10 +21,10 @@ angular.module('rockadminApp')
     email: currentAuth.email
   };
 
-    
+
 
     $scope.authInfo = currentAuth;
-    
+
     $scope.changePassword = function(oldPass, newPass, confirm) {
       $scope.err = null;
 
@@ -46,11 +46,11 @@ angular.module('rockadminApp')
     $scope.changeEmail = function (newEmail) {
       auth.$updateEmail(newEmail)
         .then(function () {
-          console.log("email changed successfully");
+          console.log('email changed successfully');
         })
         .catch(function (error) {
-          console.log("Error: ", error);
-        })
+          console.log('Error: ', error);
+        });
     };
 
     $scope.logout = function() {
@@ -58,7 +58,7 @@ angular.module('rockadminApp')
     };
 
     function error(err) {
-      console.log("Error: ", err);
+      console.log('Error: ', err);
     }
 
     function success(msg) {
@@ -79,11 +79,11 @@ angular.module('rockadminApp')
       photoURL: imgUrl
     })
       .then(function () {
-        console.log("updated");
+        console.log('updated');
       })
       .catch(function (error) {
-        console.log("error ", error);
-      })
+        console.log('error ', error);
+      });
   };
 
   }]);

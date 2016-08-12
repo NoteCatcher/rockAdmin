@@ -7,7 +7,7 @@
  * A demo of using AngularFire to manage a synchronized list.
  */
 angular.module('rockadminApp')
-  .controller('Chat', ["$scope", "currentAuth", "$firebaseArray", "$timeout", function ($scope, currentAuth, $firebaseArray, $timeout) {
+  .controller('Chat', ['$scope', 'currentAuth', '$firebaseArray', '$timeout', function ($scope, currentAuth, $firebaseArray, $timeout) {
     $scope.user = currentAuth;
 
     // synchronize a read-only, synchronized array of messages, limit to most recent 10

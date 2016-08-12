@@ -8,7 +8,7 @@
  * Controller of the rockadminApp
  */
 angular.module('rockadminApp')
-  .controller('MainCtrl', ["auth", "$scope", "$location", function (auth, $scope, $location) {
+  .controller('MainCtrl', ['auth', '$scope', '$location', function (auth, $scope, $location) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
